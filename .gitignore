@@ -1,0 +1,7 @@
+*.log
+*.meta
+server/facelog/
+server/faceLog/
+server/faceModel.meta
+server/*.pb
+server/faceWeight.txt

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ral-Time Tensor Flow Face Detection and Recognition</title>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <style>
+        div {
+            position:relative;
+
+        }
+        video {
+            <!--position: absolute;-->
+            position: relative;
+            <!--top: 0;-->
+            <!--left: 0;-->
+            z-index: -1;
+            /* Mirror the local video */
+            transform: scale(-1, 1);            /*For Firefox (& IE) */
+            -webkit-transform: scale(-1, 1);     /*for Chrome & Opera (& Safari) */
+        }
+         canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index:1
+        }
+        #exCanvas {
+            position: relative;
+            z-index:1
+        }
+    </style>
+</head>
+<body>
+
+<!--<h4>Real-Time Tensorflow Face Recognition</h4>-->
+
+<div id="videoDiv" style="position:">
+ <video id="myVideo" autoplay></video>
+</div>
+
+
+
+
+<div id="captureDiv">
+
+    <button id="buttonCapture">등록할 사진 찍기</button>
+
+    <div id="captureInfo" hidden="true">
+        <div>
+            <span id="recAlert" style="color:red">등록할 사진을 찍는중입니다...</span>
+        </div>
+
+        <div id="examplesPic">
+
+            <div>
+                <span>등록 사진:</span>
+            </div>
+
+
+            <canvas id="exCanvas" width="1600px" height="320"></canvas>
+        </div>
+
+        <div>
+            <form action="">
+                사람이름: <input id="inputName" type="text" name="pname" required>
+                멘트1: <input id="specialText" type="text" name="specialText">
+                멘트2: <input id="specialText2" type="text" name="specialText2">
+                <button id="updateModel" hidden="true">등록하기</button>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+<audio id="audio" controls="">
+    <source src="" type="audio/ogg">
+  Your browser does not support the audio element.
+  </audio>
+  
+<div id="examples" hidden="true">
+
+
+</div>
+
+<script src="/static/local.js"></script>
+<script id="objDetect" src="/static/detect.js" data-source="myVideo" data-mirror="true" data-uploadWidth="640" data-scoreThreshold="0.40"></script>
+
+</body>
+</html>
