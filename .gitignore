@@ -6,10 +6,3 @@ server/faceLog/
 server/faceModel.meta
 server/*.pb
 server/faceWeight.txt
-=======
-server/faceLog/
-server/facelog/
-server/*.meta
-server/faceWeight.txt
-server/*.pb
->>>>>>> 9d3b4fed4e558b49923b3a151b15ea7891943d8c
