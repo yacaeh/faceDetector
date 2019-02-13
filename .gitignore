@@ -1,1 +1,5 @@
-server/
+server/faceLog/
+server/facelog/
+server/*.meta
+server/faceWeight.txt
+server/*.pb
