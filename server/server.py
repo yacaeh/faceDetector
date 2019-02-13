@@ -12,6 +12,8 @@ sys.path.append(os.path.realpath('..'))
 
 from tensorface import detection
 from tensorface.recognition import recognize, learn_from_examples
+from tensorface.classifier import load_model_face
+
 #from tensorface.recognition_sklearn import recognizer
 
 # For test examples acquisition
@@ -23,13 +25,16 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 def initTrainingSet():
-    train_files = [f for f in os.listdir(TRAIN_EXAMPLES_DIR) if f.endswith('.png')]
-    print(train_files)
-    for f in  train_files:
-        name, size, num = f.split(".")[0].split("_")[1:]
-        img = Image.open(os.path.join(TRAIN_EXAMPLES_DIR, f))
-        learn_from_examples(name, img, int(num), int(size))
-    print("train complete!")
+    if os.path.isfile('./my_classifier.pkl'):
+        load_model_face()
+    else:
+        train_files = [f for f in os.listdir(TRAIN_EXAMPLES_DIR) if f.endswith('.png')]
+        print(train_files)
+        for f in  train_files:
+            name, size, num = f.split(".")[0].split("_")[1:]
+            img = Image.open(os.path.join(TRAIN_EXAMPLES_DIR, f))
+            learn_from_examples(name, img, int(num), int(size))
+        print("train complete!")
 
 initTrainingSet()
 

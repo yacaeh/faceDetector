@@ -11,12 +11,10 @@ from tensorface.embedding import embedding
 from tensorface.model import Face
 from tensorface.classifier import load_model_face, add
 
-#load_model_face()
 def recognize(faces) -> List[Face]:
     X = np.zeros((len(faces), EMBEDDING_SIZE), np.float32)
     for i, f in enumerate(faces):
-        img = f.img.resize((FACE_PIC_SIZE, FACE_PIC_SIZE), Image.BICUBIC) if f.img.size != (FACE_PIC_SIZE,
-                                                                                            FACE_PIC_SIZE) else f.img
+        img = f.img.resize((FACE_PIC_SIZE, FACE_PIC_SIZE), Image.BICUBIC) if f.img.size != (FACE_PIC_SIZE,FACE_PIC_SIZE) else f.img
 
         X[i, :] = embedding(img_to_np(img))
     #load_model_face()
