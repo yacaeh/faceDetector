@@ -13,12 +13,6 @@ import pdb
 
 class KNN:
     def __init__(self, K=5, dist_threshold=14):
-        '''
-        Why such dist_threshold value?
-        See notebook: notebooks/experiments_with_classification.ipynb
-        :param K:
-        :param dist_threshold:
-        '''
 
         # current training data
         self.X_train = None
@@ -54,19 +48,7 @@ class KNN:
         # this will return the unique neighbors the count will return the most common's index
         self.y, idx, self.count = tf.unique_with_counts(nearest_neighbors)
         self.pred = tf.slice(self.y, begin=[tf.argmax(self.count, 0)], size=tf.constant([1], dtype=tf.int64))[0]
-        #pdb.set_trace()
         print("init!")
-        # print("y:"+str(self.y))
-        # print("idx:"+str(idx))
-        # print("count:"+str(self.count))
-        # print("pred:"+str(self.pred))
-        # for file in os.listdir('.'):
-        #     if 'faceModel' in file:
-        #         print(file)
-        #         with tf.Session() as sess:
-        #             # restore the saved vairable
-        #             saver = tf.train.import_meta_graph('faceModel.meta')
-        #             saver.restore(sess, tf.train.latest_checkpoint('./'))
 
     def predict(self, X) -> List[Tuple[str, float, List[str], List[float]]]:
         print("predict!")
@@ -132,12 +114,6 @@ class KNN:
         local_i = self.idx_to_lbl
         local_l = self.lbl_to_idx
         local_yt =  self.y_train_idx 
-        
-        print("X_train:"+str(local_x))
-        print("y_train:"+str(local_y))
-        print("idx_to_lbl:"+str(local_i))
-        print("lbl_to_idx:"+str(local_l))
-        print("y_train_idx:"+str(local_yt))
                 
         classifier_filename = './my_classifier.pkl'
         classifier_filename_exp = os.path.expanduser(classifier_filename)
@@ -145,19 +121,7 @@ class KNN:
         #pdb.set_trace()
 
         with open(classifier_filename_exp, 'wb') as outfile:
-            print("X_train:"+str(local_x))
-            print("y_train:"+str(local_y))
-            print("idx_to_lbl:"+str(local_i))
-            print("lbl_to_idx:"+str(local_l))
-            print("y_train_idx:"+str(local_yt))
-            print("before dump")
             pickle.dump((local_x,local_y,local_i,local_l,local_yt), outfile) 
-            print("X_train:"+str(local_x))
-            print("y_train:"+str(local_y))
-            print("idx_to_lbl:"+str(local_i))
-            print("lbl_to_idx:"+str(local_l))
-            print("y_train_idx:"+str(local_yt))
-            print("after dump")
 
             #pdb.set_trace()
 
