@@ -145,15 +145,13 @@ class KNN:
         #pdb.set_trace()
 
         with open(classifier_filename_exp, 'wb') as outfile:
-            # global x,y,i,l,yt 여기서 0kb 되버린듯
-             # pickle.dump(model, f)
             print("X_train:"+str(local_x))
             print("y_train:"+str(local_y))
             print("idx_to_lbl:"+str(local_i))
             print("lbl_to_idx:"+str(local_l))
             print("y_train_idx:"+str(local_yt))
             print("before dump")
-            pickle.dump((local_x,local_y,local_i,local_l,local_yt), outfile) # dump 하면 다시 덮어씌워지긴함
+            pickle.dump((local_x,local_y,local_i,local_l,local_yt), outfile) 
             print("X_train:"+str(local_x))
             print("y_train:"+str(local_y))
             print("idx_to_lbl:"+str(local_i))
@@ -177,11 +175,6 @@ class KNN:
          
 def load_model_face():
     print("load model face")
-    # global X, y, model
-    # X = []
-    # y = []
-    # global models
-    # models = KNN()
     classifier_filename = './my_classifier.pkl'
     classifier_filename_exp = os.path.expanduser(classifier_filename)
     with open(classifier_filename_exp, 'rb') as infile:
@@ -194,11 +187,7 @@ def init():
     X = []
     y = []
     models = KNN()
-    #load_trained_model('./trainedFaceModel')
-    #model = joblib.load('./knn_test.model')
 init()
-#load_model_face()
-
 
 def add(new_X, new_y):
     print("add called")
